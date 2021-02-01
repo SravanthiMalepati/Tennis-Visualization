@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test application</title>
+        <link rel="stylesheet" type="text/css" href = {{ url_for('static', filename='tournament.css') }} />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta http-equiv="refresh" content="30">      
+    </head>
+    <body>
+        <div id="navlist">
+            <a class= 'home' href=#>{{ title }}</a>
+            <a class ="right" href="{{ url_for('index') }}">Home</a>
+            {% if title == 'Finished Tournaments' %}
+                <a class ="right" href="{{ url_for('live_tournaments') }}">Live Tournaments</a>
+            {% elif title == 'Live Tournaments' %}
+                <a class ="right" href="{{ url_for('finished_tournaments') }}">Finished Tournaments</a>
+            {% endif %}
+            <div class='search'>
+                <form method='POST' action="{{ url_for('search') }}">
+                    <select id="search_options" name="fields">
+                        <option value="player">Player</option>
+                        <option value="round">Round</option>
+                        <option value="tournament">Tournament</option>
+                        <option value="date">Date</option>
+                    </select>
+                    <input type="text" placeholder="Player name.." name="query">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+        {% for tournament, results in tournaments.items() %}
+        <div class="tournament">
+            <div class="card-title">
+                <div class="tournament-title">
+                    <h2>{{ tournament }}: </h2>
+                    <p>{{ results[-1] }} {% if results[-1] == 1 %}match{% else %}matches{% endif %} </p>
+                </div>
+                <div class="tags">
+                    <a href = "{{ url_for(matches_url, tournament = tournament) }}">
+                        <div>View More</div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-container">
+                {% for i in range(results|length-1) %}
+                <a href = "{{ url_for('matches', filename = results[i]['file_name']) }}">
+                    <div class="card">
+                        <header class="article-header">
+                            <div>
+                                <div class="category-title">
+                                    <span class="date">{{ results[i]['Date'] }}</span>
+                                </div>
+                            </div>
+                            <h2 class="article-title">
+                                {{ results[i]['Player_1'] }} 
+                                {% if results[i]['Player_1'] == results[i]['won'] %}
+                                <span class='result'>
+                                    {% if title == 'Live Tournaments' %}
+                                        lead
+                                    {% else %}
+                                        won
+                                    {% endif %}
+                                </span>
+                                {% endif %}
+                                <br/><span class="date">vs</span><br/> 
+                                {{ results[i]['Player_2'] }}
+                                {% if results[i]['Player_2'] == results[i]['won'] %}
+                                <span class='result'>
+                                    {% if title == 'Live Tournaments' %}
+                                        lead
+                                    {% else %}
+                                        won
+                                    {% endif %}
+                                </span>
+                                {% endif %}
+
+                            </h2>
+                        </header>
+                        <div>
+                            <div class="name">{{ results[i]['result'] }}</div>
+                        </div>
+                        <div class="tags">
+                            <div>{{ results[i]['Round'] }}</div>
+                            {% if title == 'Live Tournaments' %}
+                            <div class="Live">Live</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+</html>

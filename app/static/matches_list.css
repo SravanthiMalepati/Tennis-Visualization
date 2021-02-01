@@ -1,0 +1,118 @@
+body {
+    background-color: #100e17;
+}
+
+/* top navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #100e17;
+}
+
+/* navigation bar links */
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+    float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+    }
+}
+
+/* hiding the scroll bar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* removing the text-decoration */
+a {
+    text-decoration: none;
+    color: rgb(151, 114, 45);
+
+}
+
+.won {
+    color: green;
+}
+
+/* styling navlist */ 
+#navlist { 
+    background-color: #100e17; 
+    overflow: hidden;
+    width: 100%;
+} 
+    
+/* styling navlist anchor element */ 
+#navlist a { 
+    float:left; 
+    display: block; 
+    color: #f2f2f2; 
+    text-align: center; 
+    padding: 12px; 
+    text-decoration: none; 
+    font-size: 15px; 
+} 
+.navlist-right{ 
+    float:right; 
+} 
+
+/* hover effect of navlist anchor element */ 
+#navlist a:hover { 
+    background-color: #ddd; 
+    color: black; 
+} 
+    
+/* styling search bar */ 
+.search input[type=text]{ 
+    width:300px; 
+    height:25px; 
+    border-radius:25px; 
+    border: none; 
+}
+
+.search select {
+    width:90px;
+    height:25px; 
+    border-radius:25px; 
+    border: none; 
+}
+    
+.search{ 
+    float:right; 
+    margin:7px; 
+
+} 
+    
+.search button{ 
+    background-color: #100e17; 
+    color: #f2f2f2; 
+    float: right; 
+    padding: 5px 10px; 
+    margin-right: 16px; 
+    font-size: 12px; 
+    border: none; 
+    cursor: pointer; 
+}  
+
+.home {
+    border:solid 1px #fff;
+    border-radius: 25px;
+}
