@@ -1,4 +1,4 @@
-# Tennis_Visualisation
+# Tennis-Visualisation
 
 # Setup (windows):
 
