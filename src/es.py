@@ -22,7 +22,7 @@ def create_index(es, index_name, settings):
         if not es.indices.exists(index_name):
             es.indices.create(index = index_name, ignore=400, body = settings)
             print('Created Index')
-    except Except as ex:
+    except Exception as ex:
         print(str(ex))
     finally:
         return created
